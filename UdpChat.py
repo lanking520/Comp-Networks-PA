@@ -273,12 +273,14 @@ def client_send(client):
 								client.suicide()
 						else:
 							print "[Message received by "+ result[1] +".]"
+							prompt()
 					else:
 						# Case User has shown offline
 						if not client.serversend({"Type":"Offline", "Sender":client.nickname, "Receipent": result[1], "Status":"Offline", "Msg":msg}):
 							client.suicide()
 				else:
 					print "[Client "+ result[1] + " Not Existed!]"
+					prompt()
 			elif result[0] == "dereg":
 				if not client.dereg():
 					client.suicide()
@@ -288,7 +290,7 @@ def client_send(client):
 			if not result or len(result) != 2:
 				continue
 			elif result[0] == "reg":
-				nickname = result[1]
+				client.nickname = result[1]
 				client.kill = False
 				if not client.reg():
 					client.suicide()

@@ -23,6 +23,8 @@ $ python UdpChat.py -s <port>
 $ python UdpChat.py -c <nick-name> <server-ip> <server-port> <client-port>
 ```
 
+### Startup
+
 An Operating Server will tipically show:
 ```
 dyn-160-39-140-44:chatter lanking$ python UdpChat.py -s 5000
@@ -40,6 +42,51 @@ Client Mode Start
 >>> 
 ```
 
+### Chatting
+
+Send a Chat Message (From Lanking to sonic)
+
+#### Lanking
+```
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send sonic hi
+>>> [Message received by sonic.]
+>>> 
+```
+#### Sonic
+```
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> lanking: hi
+>>> 
+```
+### Offline Chatting
+#### Case: sonic shutdown (No Dereg)
+Message shown on Lanking's Terminal
+```
+>>> send sonic hi
+>>> [No ACK from sonic, message sent to server.]
+[Messages received by the server and saved]
+>>> [Client table updated.]
+>>> 
+```
+And a File namely "sonic" will be generated with the following content
+```
+{"Msg": "hi", "Sender": "lanking", "Time": 1488400115.368341}
+```
+If sonic Log-back, the file will be loaded properly and removed.
+```
+>>> reg sonic
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [You Have Messages]
+>>> lanking: 2017-03-01 15:28:35 hi
+>>> 
+```
+
+
 ## Program Feature
 
 ## Algorithms and Data Structure
@@ -48,3 +95,6 @@ Client Mode Start
 
 ### Handle Multiple request at the same time
 The client and server's listener are designed with 100 msec timeout. Considering a large amount of users using the application at the same time, there maybe some packet timed-out. This issue could be fixed in the future version by adding a Complex threading system. Every Listener itself is a thread with an expire time. The listening process wouldn't delayed by a single thread. 
+
+### Ctrl + C Triggering
+The handling of Ctrl + C will work all the time. However sometimes you need to Ctrl + C + Enter to Get it proceed.

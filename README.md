@@ -6,6 +6,21 @@ Name: Qing Lan						UNI: ql2282
 Super Chatter is a course project to enable 
 
 ## Tutorial
+To provides the full functionalities of the program and avoid unexpected error please run the followings:
+```bash
+sudo apt-get install build-essentials
+```
+To run the application, please move to the folder of the Python file
+
+### Run as a server
+
+```python
+python UdpChat.py -s <port>
+```
+### Run as a client
+```python
+python UdpChat.py -c <nick-name> <server-ip> <server-port> <client-port>
+```
 
 ## Program Feature
 

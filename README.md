@@ -10,16 +10,33 @@ To provides the full functionalities of the program and avoid unexpected error p
 ```bash
 sudo apt-get install build-essentials
 ```
-To run the application, please move to the folder of the Python file
+To run the application, please move to the folder of the Python file. If client has been set-up before server, the client would automatically quit.
 
 ### Run as a server
 
-```python
+```bash
 python UdpChat.py -s <port>
 ```
 ### Run as a client
-```python
+```bash
 python UdpChat.py -c <nick-name> <server-ip> <server-port> <client-port>
+```
+
+An Operating Server will tipically show:
+```
+dyn-160-39-140-44:chatter lanking$ python UdpChat.py -s 5000
+Socket created and binded
+listening on: localhost : 5000
+Server Mode Start
+```
+For Client Side:
+```
+dyn-160-39-140-44:chatter lanking$ python UdpChat.py -c sonic localhost 5000 1211
+Socket created and binded
+Client Mode Start
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> 
 ```
 
 ## Program Feature

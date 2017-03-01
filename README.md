@@ -3,7 +3,7 @@
 Name: Qing Lan						UNI: ql2282
 
 ## Description
-Super Chatter is a course project to enable 
+Super Chatter is a Chatting application built in python what enable several users chatting together. It used the UDP protocol + multi-threading to achieve the full functionalities for clients and server.
 
 ## Tutorial
 To provides the full functionalities of the program and avoid unexpected error please run the followings:
@@ -102,10 +102,19 @@ If sonic Log-back, the file will be loaded properly and removed.
 ```
 
 ## Program Feature
+This application is designed for Online/Offline communication with complete login/logoff architecture. The protocol this App use is the UDP connection. It contains the a comprehensive error handling features for the know issues:
+- Accident Offline handling: Client notify Server -> Server store offline message and update table
+- Conflict Login: Username should be unique while the server operating
+- Dead Online Client: Server has a Verification function used to check the online status of the client
+
 
 ## Algorithms and Data Structure
 
+There are two classes being created for the application, Server and Client.
+
 ## Current Known Issue
+
+### Wrong ACK Flag
 
 ### Handle Multiple request at the same time
 The client and server's listener are designed with 100 msec timeout. Considering a large amount of users using the application at the same time, there maybe some packet timed-out. This issue could be fixed in the future version by adding a Complex threading system. Every Listener itself is a thread with an expire time. The listening process wouldn't delayed by a single thread. If is possible to use a queue to process the incoming requests.

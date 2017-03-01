@@ -8,18 +8,19 @@ Super Chatter is a course project to enable
 ## Tutorial
 To provides the full functionalities of the program and avoid unexpected error please run the followings:
 ```bash
-sudo apt-get install build-essentials
+$ sudo apt-get install build-essentials
 ```
 To run the application, please move to the folder of the Python file. If client has been set-up before server, the client would automatically quit.
 
 ### Run as a server
 
 ```bash
-python UdpChat.py -s <port>
+$ python UdpChat.py -s <port>
 ```
 ### Run as a client
 ```bash
-python UdpChat.py -c <nick-name> <server-ip> <server-port> <client-port>
+
+$ python UdpChat.py -c <nick-name> <server-ip> <server-port> <client-port>
 ```
 
 An Operating Server will tipically show:

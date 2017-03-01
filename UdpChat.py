@@ -96,7 +96,7 @@ class Server:
 		return sent
 
 	def offline_msg(self, data, addr):
-		if not verification(addr):
+		if not self.verification(addr):
 			self.addrbook[data["Receipent"]][2] = "No"
 
 		if data["Status"] == "Offline" and self.addrbook[data["Receipent"]][2] == "Yes":

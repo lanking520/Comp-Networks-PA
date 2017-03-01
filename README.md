@@ -85,7 +85,21 @@ If sonic Log-back, the file will be loaded properly and removed.
 >>> lanking: 2017-03-01 15:28:35 hi
 >>> 
 ```
+### Login and Logoff
 
+#### Logoff
+
+```
+>>> dereg
+>>> [You are Offline. Bye.]
+```
+#### Login
+
+```
+>>> reg lanking
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+```
 
 ## Program Feature
 
@@ -94,7 +108,7 @@ If sonic Log-back, the file will be loaded properly and removed.
 ## Current Known Issue
 
 ### Handle Multiple request at the same time
-The client and server's listener are designed with 100 msec timeout. Considering a large amount of users using the application at the same time, there maybe some packet timed-out. This issue could be fixed in the future version by adding a Complex threading system. Every Listener itself is a thread with an expire time. The listening process wouldn't delayed by a single thread. 
+The client and server's listener are designed with 100 msec timeout. Considering a large amount of users using the application at the same time, there maybe some packet timed-out. This issue could be fixed in the future version by adding a Complex threading system. Every Listener itself is a thread with an expire time. The listening process wouldn't delayed by a single thread. If is possible to use a queue to process the incoming requests.
 
 ### Ctrl + C Triggering
-The handling of Ctrl + C will work all the time. However sometimes you need to Ctrl + C + Enter to Get it proceed.
+The handling of Ctrl + C will work all the time. However, sometimes you need to Ctrl + C + Enter to Get it proceed.

@@ -108,9 +108,36 @@ This application is designed for Online/Offline communication with complete logi
 - Dead Online Client: Server has a Verification function used to check the online status of the client
 
 
-## Algorithms and Data Structure
+## Data Structure and Internal Logic
 
-There are two classes being created for the application, Server and Client.
+The whole application were built based the two classes, Server and client. All messages are parsed and loaded in JSON.
+
+### Server
+
+#### Variable
+- addrbook: Used to store updated Database
+- kill: A flag used to shut down the listener of the Server
+- s: Socket used to listen and send message
+
+#### Function
+- __init__ : Used to create new socket and bind to the IP and port
+- listen : Listening logic for server contains functionality to send ACK in response
+- send: Send the message to the client (Contains ACK fetcher to fetch ACK)
+- broadcast: Send information to all available user
+- Update_table: Major function to update the registration table, dealing with registration request
+- dereg_user: Process Deregistration request from Client
+- verification: Check the user is online or not
+- offline_msg: Dealing with offline request and store messages
+
+#### Accepted Request
+- Reg: Registration Request
+- Dereg: Dereg Request
+- Offline: Offline Storage Request
+- ack: For acknoledgement
+
+### Client
+
+
 
 ## Current Known Issue
 

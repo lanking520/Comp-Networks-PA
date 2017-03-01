@@ -1,12 +1,19 @@
 #!/usr/bin/env python
+'''
+Author: Qing Lan
+Date: 1/3/2017
+Copyright: Free
+
+'''
 import socket
 import os, sys
 import json
 import time
 import datetime
 from threading import Thread
-#Server Type ["Reg", "Dereg", "Offline", "ack"]
-#Client Type["Chat", "Table", "Notification","ack"]
+
+#Server Accept Type ["Reg", "Dereg", "Offline", "ack"]
+#Client Client Type["Chat", "Table", "Notification","ack"]
 
 def prompt() :
     sys.stdout.write('>>> ')

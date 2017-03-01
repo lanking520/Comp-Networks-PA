@@ -106,6 +106,7 @@ This application is designed for Online/Offline communication with complete logi
 - Accident Offline handling: Client notify Server -> Server store offline message and update table
 - Conflict Login: Username should be unique while the server operating
 - Dead Online Client: Server has a Verification function used to check the online status of the client
+- Infinity Acked: Avoid infinity Acknowledge message sent among clients and server
 
 
 ## Data Structure and Internal Logic
@@ -115,9 +116,9 @@ The whole application were built based the two classes, Server and client. All m
 ### Server
 
 #### Variable
-- addrbook: Used to store updated Database
-- kill: A flag used to shut down the listener of the Server
-- s: Socket used to listen and send message
+- addrbook: A dictionary used to store updated Database 
+- kill: A Boolean flag used to shut down the listener of the Server
+- s: A Socket used to listen and send message
 
 #### Function
 - __init__ : Used to create new socket and bind to the IP and port
@@ -133,15 +134,37 @@ The whole application were built based the two classes, Server and client. All m
 - Reg: Registration Request
 - Dereg: Dereg Request
 - Offline: Offline Storage Request
-- ack: For acknoledgement
+- ack: For acknowledgement
 
 ### Client
 
+#### Variable
+- addrbook: A dictionary used to store updated Database 
+- kill: A Boolean flag used to shut down the listener and sender of the Client
+- acked: Acknowledge boolean flag created to confirm a message has been received.
+- nickname: The current nickname for the client
+- Serverip: IP address of the server
+- Serverport: Port of the server
+- PORT: Port used for the client
 
+#### Function
+- init: Used to create new socket and bind to the IP and port
+- listen: Listening logic for server contains functionality to send ACK in response and set acked flag
+- send: Send the data with 500msec timeout with acked flag check
+- updatetable: Update the addresstable
+- reg: Registration request sent from client
+- serversend: 5 times checking-send to the server
+- dereg: Deregistration request
+- suicide: Handle the server-no-response condition, the client suicide
+
+#### Accepted Request
+- Chat: Chat Message sent from Server or client
+- Table: Table Update request sent from server
+- Notification: Notification Message sent from server
+- Verification: Verification Request sent from server
+- ack: For acknowledgement
 
 ## Current Known Issue
-
-### Wrong ACK Flag
 
 ### Handle Multiple request at the same time
 The client and server's listener are designed with 100 msec timeout. Considering a large amount of users using the application at the same time, there maybe some packet timed-out. This issue could be fixed in the future version by adding a Complex threading system. Every Listener itself is a thread with an expire time. The listening process wouldn't delayed by a single thread. If is possible to use a queue to process the incoming requests.

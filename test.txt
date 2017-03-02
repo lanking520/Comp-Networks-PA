@@ -1,0 +1,244 @@
+TestFiles
+
+Contains 4 test cases, the first and second test case are from the Notes
+
+# Third Test Logic
+1. start server
+2. start Client X
+3. start Client Y
+4. X Exit
+5. chat Y -> X
+6. reg X
+7. Server Exit
+
+# Fourth Test Logic
+1. start Client X
+2. start Client Y with same nickname as X
+3. Exit X
+4. start Client Y with same nickname as X
+5. Dereg Y
+
+
+################################ Test Case 1 #######################################
+
+~~~~~~~~~~~~~~~~~~~ Client X ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c lanking localhost 5000 1234
+Socket created and binded
+Client Mode Start
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> tails: hi
+>>> send sonic hi
+>>> [Message received by sonic.]
+>>> tails: how are you?
+>>> send tails I am find
+>>> [Message received by tails.]
+>>> sonic: I am good!
+>>> dereg        
+>>> [You are Offline. Bye.]
+>>> reg lanking
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [You Have Messages]
+>>> tails: 2017-03-01 22:48:50 Where are you?
+>>> sonic: 2017-03-01 22:49:03 Where are you now?
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> ^C[You are Offline. Bye.]
+dyn-160-39-140-44:UdpChat lanking$ 
+
+
+~~~~~~~~~~~~~~~~~~~ Client Y ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c tails localhost 5000 1232
+Socket created and binded
+Client Mode Start
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> send lanking hi
+>>> [Message received by lanking.]
+>>> sonic: hi
+>>> send tails how are you?
+>>> tails: how are you?
+>>> [Message received by tails.]
+>>> send lanking how are you?
+>>> [Message received by lanking.]
+>>> lanking: I am find
+>>> send sonic How are you?
+>>> [Message received by sonic.]
+>>> [Client table updated.]
+>>> send lanking Where are you?
+>>> [Messages received by the server and saved]
+>>> [Client table updated.]
+>>> ^C[You are Offline. Bye.]
+>>> dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Client Z ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1233
+Socket created and binded
+Client Mode Start
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> lanking: hi
+>>> send tails hi
+>>> [Message received by tails.]
+>>> tails: How are you?
+>>> send lanking I am good!
+>>> [Message received by lanking.]
+>>> [Client table updated.]
+>>> send lanking Where are you now?
+>>> [Messages received by the server and saved]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> ^C[You are Offline. Bye.]
+>>> dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Server  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -s 5000
+Socket created and binded
+listening on: localhost : 5000
+Server Mode Start
+No Offline Message
+No Offline Message
+No Offline Message
+^Cdyn-160-39-140-44:UdpChat lanking$ 
+
+################################ Test Case 2 #######################################
+
+~~~~~~~~~~~~~~~~~~~ Client X ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1233
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send tails hi
+>>> [1 Attempt Connection.]
+[2 Attempt Connection.]
+[3 Attempt Connection.]
+[4 Attempt Connection.]
+[5 Attempt Connection.]
+>>> [Server not responding]
+>>> [Exiting]
+dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Client Y ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c tails localhost 5000 1232
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> dereg  
+>>> [1 Attempt Connection.]
+[You are Offline. Bye.]
+>>> 
+
+################################ Test Case 3 #######################################
+
+~~~~~~~~~~~~~~~~~~~ Client X ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1233
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> ^D
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1233
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [You Have Messages]
+>>> tails: 2017-03-01 23:21:33 Where is Knuckles?
+>>> [Server is Down!]
+dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Client Y ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c tails localhost 5000 1232
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send sonic Where is Knuckles?       
+>>> [No ACK from sonic, message sent to server.]
+[1 Attempt Connection.]
+[Messages received by the server and saved]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> [Server is Down!]
+dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Server ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$  python UdpChat.py -s 5000
+Socket created and binded
+listening on: localhost : 5000
+Server Mode Start
+No Offline Message for tails
+Incoming Registration Request from tails
+No Offline Message for sonic
+Incoming Registration Request from sonic
+Incoming Offline Message Request from tails
+Incoming Registration Request from sonic
+^Cdyn-160-39-140-44:UdpChat lanking$ 
+
+################################ Test Case 4 #######################################
+
+~~~~~~~~~~~~~~~~~~~ Client X ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1232
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [Welcome, You are registered.]
+>>> [Client table updated.]
+>>> ^D
+dyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Client Y ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$ python UdpChat.py -c sonic localhost 5000 1233
+Socket created and binded
+Client Mode Start
+[1 Attempt Connection.]
+>>> [sonic is already Online!]
+>>> reg sonic
+>>> [1 Attempt Connection.]
+[Welcome, You are registered.]
+>>> [Client table updated.]
+>>> dereg
+>>> [1 Attempt Connection.]
+[You are Offline. Bye.]
+>>> ^Cdyn-160-39-140-44:UdpChat lanking$ 
+
+~~~~~~~~~~~~~~~~~~~ Server ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dyn-160-39-140-44:UdpChat lanking$  python UdpChat.py -s 5000
+Socket created and binded
+listening on: localhost : 5000
+Server Mode Start
+No Offline Message for sonic
+Incoming Registration Request from sonic
+Incoming Registration Request from sonic
+No Offline Message for sonic
+Incoming Registration Request from sonic
+Incoming De-reg Request from sonic
+^Cdyn-160-39-140-44:UdpChat lanking$ 
+

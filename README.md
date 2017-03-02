@@ -107,7 +107,10 @@ This application is designed for Online/Offline communication with complete logi
 - Conflict Login: Username should be unique while the server operating
 - Dead Online Client: Server has a Verification function used to check the online status of the client
 - Infinity Acked: Avoid infinity Acknowledge message sent among clients and server
+- Server Offline: When a server offline, it will notify all the clients to go offline too
+- Thread Safe: Set Daemon on Listener and Sender, keep Main thread handle the Interruption
 
+The application improves the Ctrl+C interruption handling. It would logoff automatically if Ctrl+C pressed. Please shut down the terminal to create the Dead-Online-Client Scenario. Same way works on the server if Dead-Online-Server Scenario needed.
 
 ## Data Structure and Internal Logic
 
@@ -164,6 +167,18 @@ The whole application were built based the two classes, Server and client. All m
 - Verification: Verification Request sent from server
 - ack: For acknowledgement
 
+### Main Logic
+
+#### Server
+
+Server Will runs in a Loop switching between different cases
+
+#### Client
+
+Client Listener will runs in a loop switching between different cases and print out message.
+
+Client Sender will take input from user and determine the condition of the client
+
 ## Current Known Issue
 
 ### Handle Multiple request at the same time
@@ -171,3 +186,6 @@ The client and server's listener are designed with 100 msec timeout. Considering
 
 ### Ctrl + C Triggering
 The handling of Ctrl + C will work all the time. However, sometimes you need to Ctrl + C + Enter to Get it proceed.
+
+### Data Present Imcomplete
+When Trying to type in Chinese -- Japanese Characters, the message received are sometimes imcomplete

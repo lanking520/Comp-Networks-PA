@@ -103,6 +103,7 @@ If sonic Log-back, the file will be loaded properly and removed.
 
 ## Program Feature
 This application is designed for Online/Offline communication with complete login/logoff architecture. The protocol this App use is the UDP connection. It contains the a comprehensive error handling features for the know issues:
+
 - Accident Offline handling: Client notify Server -> Server store offline message and update table
 - Conflict Login: Username should be unique while the server operating
 - Dead Online Client: Server has a Verification function used to check the online status of the client

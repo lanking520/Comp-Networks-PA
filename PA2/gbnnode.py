@@ -104,7 +104,7 @@ class GBN:
 					d = self.s.recvfrom(4096)
 					if d[0] == 'done':
 						print "[Summary] "+str(self.discarder)+"/"+str(self.discarder+self.recver)+" packets discarded, loss rate = "+str(self.discarder*1.0/(self.recver+self.discarder))
-						print self.msglen
+						#print self.msglen
 						self.discarder = 0
 						self.recver = 0
 					else:
@@ -138,15 +138,19 @@ class GBN:
 
 							self.s.sendto(str(result), self.addr)
 							msg = "["+str(time.time())+"] ACK"+str(result)+" sent, expecting packet"+str(result+1)
+							self.recver += 1
 							print msg
 						else:
 							msg = "["+str(time.time())+"] packet"+message[:-1]+" discarded"
+							self.discarder += 1
 							print msg
 
 					else:
 						self.s.sendto(message, self.addr)
-						print "Data Get completely!"
-						print len(self.recvmsg)
+						print "[Summary] "+str(self.discarder)+"/"+str(self.discarder+self.recver)+" packets dropped, loss rate = "+str(self.discarder*1.0/(self.recver+self.discarder))
+						self.discarder = 0
+						self.recver = 0
+						#print len(self.recvmsg)
 						self.recvmsg = ""
 						prompt()
 				except socket.timeout:

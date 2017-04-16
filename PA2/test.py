@@ -11,3 +11,5 @@ print b[:-1]
 
 c = "1234567"
 print c[:-1]
+
+print type(round(12.1239871938712, 2))

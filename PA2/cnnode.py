@@ -81,8 +81,8 @@ class cnnode:
 					# Case Shorter path found
 					if self.routetable[item[0]][0] > self.routetable[source][0]+item[1]:
 						# update routing table
-						print "Compare Update"
-						print item[0],source, self.routetable[source][0]+item[1]
+						# print "Compare Update"
+						# print item[0],source, self.routetable[source][0]+item[1]
 						adder = source
 						if self.routetable[source][1]:
 							adder = self.routetable[source][1]
@@ -95,8 +95,8 @@ class cnnode:
 
 				elif item[0] != self.port:
 					# case destination Not Exist
-					print "Add update"
-					print item[0], source, self.routetable[source][0]+item[1]
+					# print "Add update"
+					# print item[0], source, self.routetable[source][0]+item[1]
 					self.routetable[item[0]] = [self.routetable[source][0]+item[1],source]
 					updateflag = True
 		return updateflag
@@ -112,7 +112,8 @@ class cnnode:
 		for port in self.neighbour:
 			addr = (self.host,port)
 			self.s.sendto(data, addr)
-		self.printer()
+			msg = "["+str(time.time())+"] Message sent from Node "+str(self.port)+ " to Node "+str(port)
+			print msg
 
 	def printer(self):
 		print "["+str(time.time())+"] Node "+str(self.port)+" Routing Table"
@@ -157,8 +158,8 @@ class cnnode:
 
 		# Timeout			
 		if self.GBNtimer[port] <= time.time():
-			msg = "["+str(time.time())+"] packet"+self.window[port][0][1][:-1]+" timeout"
-			print msg
+			# msg = "["+str(time.time())+"] packet"+self.window[port][0][1][:-1]+" timeout"
+			# print msg
 			self.GBNtimer[port] = time.time() + 0.5
 			for i in range(len(self.window[port])):
 				self.send(self.window[port][i],port)
@@ -213,6 +214,7 @@ class cnnode:
 				# Section Table Sender
 				if len(self.queue) != 0:
 					updateflag = self.update(self.queue.pop())
+					self.printer()
 					if updateflag or firsttime:
 						self.broadcast()
 						firsttime = False
@@ -243,6 +245,8 @@ class cnnode:
 						self.s.sendto(msg, d[1])
 				else:
 					# Table update
+					msg = "["+str(time.time())+"] Message received at Node "+str(self.port)+ " from Node "+str(port)
+					print msg
 					self.queue.append(json.loads(d[0]))
 			except socket.timeout:
 				pass

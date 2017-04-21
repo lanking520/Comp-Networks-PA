@@ -89,7 +89,8 @@ class dvnode:
 		for port in self.neighbour:
 			addr = (self.host,port)
 			self.s.sendto(data, addr)
-		self.printer()
+			msg = "["+str(time.time())+"] Message sent from Node "+str(self.port)+ " to Node "+str(port)
+			print msg
 
 	def printer(self):
 		print "["+str(time.time())+"] Node "+str(self.port)+" Routing Table"
@@ -107,6 +108,7 @@ class dvnode:
 		while True:
 			if len(self.queue) != 0:
 				updateflag = self.update(self.queue.pop())
+				self.printer()
 				if updateflag or firsttime:
 					self.broadcast()
 					firsttime = False
@@ -119,6 +121,8 @@ class dvnode:
 			try:
 				self.s.settimeout(0.01)
 				d = self.s.recvfrom(4096)
+				msg = "["+str(time.time())+"] Message received at Node "+str(self.port)+ " from Node "+str(d[1][1])
+				print msg
 				self.queue.append(json.loads(d[0]))
 			except socket.timeout:
 				pass

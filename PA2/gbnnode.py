@@ -42,18 +42,25 @@ class GBN:
 			sys.exit()
 
 	def drop(self):
-		num = random.uniform(0,1)
-		if num <= self.value:
-			return True
+		total = self.discarder + self.recver+1
+		if self.mode == '-d':
+			if total != 0 and total % self.value == 0.0:
+				return True
+			else:
+				return False
 		else:
-			return False
+			num = random.uniform(0,1)
+			if num <= self.value:
+				return True
+			else:
+				return False
 
 	def send(self,data):
 		self.s.sendto(data[1], self.addr)
 		msg = "["+str(time.time())+"] packet"+data[1][:-1]+" "+data[1][-1]+" sent"
 		print msg
 		data[0] = "SD"
-		time.sleep(0.01)
+		#time.sleep(0.01)
 
 	def sorter(self):
 		# ["ACK/NS/SD","pkgn'b']
@@ -114,6 +121,7 @@ class GBN:
 							self.discarder += 1
 						else:
 							num = int(d[0]) - int(self.window[0][1][:-1])
+							# Avoid Duplicates ACK
 							if num >= 0:
 								self.window[num][0] = "ACK"
 								msg = "["+str(time.time())+"] ACK"+d[0]+" received, window moves to "+str(int(d[0])+1)
@@ -133,6 +141,7 @@ class GBN:
 
 							result = len(self.recvmsg)-1
 							if int(message[:-1]) == len(self.recvmsg):
+								# Avoid Duplicated Packets
 								result += 1
 								self.recvmsg += message[-1]
 

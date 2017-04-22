@@ -59,7 +59,8 @@ class GBN:
 		self.s.sendto(data[1], self.addr)
 		msg = "["+str(time.time())+"] packet"+data[1][:-1]+" "+data[1][-1]+" sent"
 		print msg
-		data[0] = "SD"
+		if data[0] != 'ACK':
+			data[0] = "SD"
 		#time.sleep(0.01)
 
 	def sorter(self):
@@ -67,10 +68,10 @@ class GBN:
 		# NS: Not send, ACK: acked, SD: Send
 		ACK_flag = [False,0]
 		for i in range(len(self.window)):
-			if self.window[i][0] == "ACK":
+			if self.window[i][0] == 'ACK':
 				ACK_flag = [True,i]
 				break
-			if self.window[i][0] == "NS":
+			if self.window[i][0] == 'NS':
 				self.send(self.window[i])
 				if i == 0:
 					self.timer = time.time() + 0.5

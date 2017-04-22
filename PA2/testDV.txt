@@ -1,0 +1,268 @@
+Test Case for DV
+
+Node 1111:
+
+dyn-160-39-141-97:PA2 lanking$ python dvnode.py 1111 2222 .1 3333 .5
+Socket created and binded
+listening on: localhost : 1111
+Client Mode Start
+[1492828146.21] Message received at Node 1111 from Node 2222
+Add update
+4444 2222 0.9
+Compare Update
+3333 2222 0.3
+[1492828146.21] Node 1111 Routing Table
+(0.9) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+[1492828146.21] Message sent from Node 1111 to Node 2222
+[1492828146.22] Message sent from Node 1111 to Node 3333
+[1492828146.22] Message received at Node 1111 from Node 3333
+Compare Update
+4444 3333 0.8
+[1492828146.22] Node 1111 Routing Table
+(0.8) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+[1492828146.22] Message sent from Node 1111 to Node 2222
+[1492828146.22] Message received at Node 1111 from Node 2222
+[1492828146.22] Message sent from Node 1111 to Node 3333
+Compare Update
+4444 2222 0.8
+[1492828146.22] Node 1111 Routing Table
+(0.8) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+[1492828146.22] Message received at Node 1111 from Node 3333
+[1492828146.23] Message sent from Node 1111 to Node 2222
+[1492828146.23] Message sent from Node 1111 to Node 3333
+[1492828146.23] Node 1111 Routing Table
+(0.8) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+^Cdyn-160-39-141-97:PA2 lanking$ python dvnode.py 1111 2222 .1 3333 .5
+Socket created and binded
+listening on: localhost : 1111
+Client Mode Start
+[1492828222.4] Message received at Node 1111 from Node 3333
+[1492828222.4] Node 1111 Routing Table
+(1.0) -> Node 4444; Next hop -> Node 3333
+(0.5) -> Node 3333
+(0.1) -> Node 2222
+[1492828222.4] Message received at Node 1111 from Node 2222
+[1492828222.4] Message sent from Node 1111 to Node 2222
+[1492828222.4] Message sent from Node 1111 to Node 3333
+[1492828222.4] Node 1111 Routing Table
+(0.9) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+[1492828222.41] Message received at Node 1111 from Node 3333
+[1492828222.41] Message sent from Node 1111 to Node 2222
+[1492828222.41] Message received at Node 1111 from Node 2222
+[1492828222.41] Message sent from Node 1111 to Node 3333
+[1492828222.41] Node 1111 Routing Table
+(0.8) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+[1492828222.41] Message sent from Node 1111 to Node 2222
+[1492828222.41] Message sent from Node 1111 to Node 3333
+[1492828222.41] Node 1111 Routing Table
+(0.8) -> Node 4444; Next hop -> Node 2222
+(0.3) -> Node 3333; Next hop -> Node 2222
+(0.1) -> Node 2222
+
+Node 2222:
+
+dyn-160-39-141-97:PA2 lanking$ python dvnode.py 2222 1111 .1 3333 .2 4444 .8
+Socket created and binded
+listening on: localhost : 2222
+Client Mode Start
+[1492828146.21] Message received at Node 2222 from Node 4444
+[1492828146.21] Node 2222 Routing Table
+(0.8) -> Node 4444
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.21] Message sent from Node 2222 to Node 1111
+[1492828146.21] Message received at Node 2222 from Node 1111
+[1492828146.21] Message sent from Node 2222 to Node 3333
+[1492828146.22] Message sent from Node 2222 to Node 4444
+[1492828146.22] Node 2222 Routing Table
+(0.8) -> Node 4444
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.22] Message received at Node 2222 from Node 4444
+[1492828146.22] Node 2222 Routing Table
+(0.8) -> Node 4444
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.22] Message received at Node 2222 from Node 3333
+Compare Update
+4444 3333 0.7
+[1492828146.22] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.22] Message received at Node 2222 from Node 1111
+[1492828146.22] Message sent from Node 2222 to Node 1111
+[1492828146.22] Message received at Node 2222 from Node 4444
+[1492828146.22] Message sent from Node 2222 to Node 3333
+[1492828146.23] Message received at Node 2222 from Node 1111
+[1492828146.23] Message sent from Node 2222 to Node 4444
+ [1492828146.23] Message received at Node 2222 from Node 3333
+[1492828146.23] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.23] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.23] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.23] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828146.23] Message received at Node 2222 from Node 4444
+[1492828146.23] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+^Cdyn-160-39-141-97:PA2 lanking$ python dvnode.py 2222 1111 .1 3333 .2 4444 .8
+Socket created and binded
+listening on: localhost : 2222
+Client Mode Start
+[1492828222.4] Message received at Node 2222 from Node 4444
+[1492828222.4] Node 2222 Routing Table
+(0.8) -> Node 4444
+(0.2) -> Node 3333
+ [1492828222.4] Message received at Node 2222 from Node 3333
+(0.1) -> Node 1111
+[1492828222.4] Message sent from Node 2222 to Node 1111
+[1492828222.4] Message received at Node 2222 from Node 1111
+[1492828222.4] Message sent from Node 2222 to Node 3333
+[1492828222.4] Message sent from Node 2222 to Node 4444
+[1492828222.4] Node 2222 Routing Table
+(0.8) -> Node 4444
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.4] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.41] Message received at Node 2222 from Node 1111
+[1492828222.41] Message received at Node 2222 from Node 4444
+[1492828222.41] Message sent from Node 2222 to Node 1111
+[1492828222.41] Message received at Node 2222 from Node 3333
+[1492828222.41] Message sent from Node 2222 to Node 3333
+[1492828222.41] Message received at Node 2222 from Node 1111
+[1492828222.41] Message received at Node 2222 from Node 4444
+[1492828222.41] Message sent from Node 2222 to Node 4444
+[1492828222.41] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.41] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.42] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.42] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+[1492828222.42] Node 2222 Routing Table
+(0.7) -> Node 4444; Next hop -> Node 3333
+(0.2) -> Node 3333
+(0.1) -> Node 1111
+
+Node 3333:
+
+dyn-160-39-141-97:PA2 lanking$ python dvnode.py 3333 1111 .5 2222 .2 4444 .5
+Socket created and binded
+listening on: localhost : 3333
+Client Mode Start
+[1492828222.4] Message received at Node 3333 from Node 4444
+[1492828222.4] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.5) -> Node 1111
+[1492828222.4] Message sent from Node 3333 to Node 1111
+[1492828222.4] Message sent from Node 3333 to Node 2222
+[1492828222.4] Message received at Node 3333 from Node 2222
+[1492828222.4] Message sent from Node 3333 to Node 4444
+[1492828222.4] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.4] Message received at Node 3333 from Node 1111
+[1492828222.41] Message sent from Node 3333 to Node 1111
+[1492828222.41] Message received at Node 3333 from Node 1111
+[1492828222.41] Message received at Node 3333 from Node 4444
+[1492828222.41] Message sent from Node 3333 to Node 2222
+[1492828222.41] Message received at Node 3333 from Node 2222
+[1492828222.41] Message sent from Node 3333 to Node 4444
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.41] Message received at Node 3333 from Node 4444
+[1492828222.41] Message received at Node 3333 from Node 1111
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+[1492828222.41] Node 3333 Routing Table
+(0.5) -> Node 4444
+(0.2) -> Node 2222
+(0.3) -> Node 1111; Next hop -> Node 2222
+
+Node 4444:
+
+dyn-160-39-141-97:PA2 lanking$ python dvnode.py 4444 2222 .8 3333 .5 last
+Socket created and binded
+listening on: localhost : 4444
+Client Mode Start
+[1492828222.4] Message sent from Node 4444 to Node 2222
+[1492828222.4] Message sent from Node 4444 to Node 3333
+[1492828222.4] Message received at Node 4444 from Node 3333
+[1492828222.4] Node 4444 Routing Table
+(0.5) -> Node 3333
+(0.7) -> Node 2222; Next hop -> Node 3333
+(1.0) -> Node 1111; Next hop -> Node 3333
+[1492828222.4] Message received at Node 4444 from Node 2222
+[1492828222.41] Message sent from Node 4444 to Node 2222
+[1492828222.41] Message sent from Node 4444 to Node 3333
+[1492828222.41] Node 4444 Routing Table
+(0.5) -> Node 3333
+(0.7) -> Node 2222; Next hop -> Node 3333
+(0.8) -> Node 1111; Next hop -> Node 3333
+[1492828222.41] Message sent from Node 4444 to Node 2222
+[1492828222.41] Message received at Node 4444 from Node 3333
+[1492828222.41] Message received at Node 4444 from Node 2222
+[1492828222.41] Message sent from Node 4444 to Node 3333
+[1492828222.41] Node 4444 Routing Table
+(0.5) -> Node 3333
+(0.7) -> Node 2222; Next hop -> Node 3333
+(0.8) -> Node 1111; Next hop -> Node 3333
+[1492828222.41] Node 4444 Routing Table
+(0.5) -> Node 3333
+(0.7) -> Node 2222; Next hop -> Node 3333
+(0.8) -> Node 1111; Next hop -> Node 3333

@@ -70,7 +70,7 @@ class cnnode:
 		if source == self.port:
 			# Super User Access
 			for item in nelist:
-				if not self.routetable[item[0]][1] or self.routetable[item[0]][0] > item[1]:
+				if (not self.routetable[item[0]][1] and self.routetable[item[0]][0] != item[1]) or self.routetable[item[0]][0] > item[1]:
 					self.routetable[item[0]] = [item[1], None]
 					updateflag = True
 

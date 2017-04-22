@@ -63,8 +63,8 @@ class dvnode:
 			if self.routetable.has_key(item[0]):
 				if self.routetable[item[0]][0] > self.routetable[source][0]+item[1]:
 					# update routing table
-					print "Compare Update"
-					print item[0],source, self.routetable[source][0]+item[1]
+					# print "Compare Update"
+					# print item[0],source, self.routetable[source][0]+item[1]
 					adder = source
 					if self.routetable[source][1]:
 						adder = self.routetable[source][1]
@@ -72,8 +72,8 @@ class dvnode:
 					updateflag = True
 			elif item[0] != self.port:
 				# case destination Not Exist
-				print "Add update"
-				print item[0], source, self.routetable[source][0]+item[1]
+				# print "Add update"
+				# print item[0], source, self.routetable[source][0]+item[1]
 				self.routetable[item[0]] = [self.routetable[source][0]+item[1],source]
 				updateflag = True
 		return updateflag

@@ -131,7 +131,8 @@ class cnnode:
 		#msg = "["+str(time.time())+"] packet"+data[1][:-1]+" "+data[1][-1]+" sent"
 		#print msg
 		self.total[port] += 1
-		data[0] = "SD"
+		if data[0] != 'ACK':
+			data[0] = "SD"
 		#time.sleep(0.01)
 
 	def sorter(self, port):
